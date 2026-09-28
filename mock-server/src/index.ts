@@ -163,12 +163,19 @@ wss.on("error", (err) => {
 	process.exit(1);
 });
 
+/** off → 1 → 2 … → max → off */
+function nextAdditional(current: number | null, max: number): number | null {
+	if (current === null) return 1;
+	return current >= max ? null : current + 1;
+}
+
 function printHelp(): void {
 	console.log(
 		[
 			"Keys:",
 			"  g  toggle inGame        s  toggle SW radio      b  toggle LR backpack",
 			"  v  toggle in-vehicle    f  randomize frequencies",
+			"  a  cycle SW additional channel (off,1..8)     l  cycle LR backpack additional (off,1..9)",
 			"  1-9  set SW channel     p  print state          h  help      q  quit",
 		].join("\n"),
 	);
@@ -188,6 +195,8 @@ function onKey(key: string): void {
 			world.backpack.frequencies = randomFreqs(9, 30, 87);
 			world.vehicle.frequencies = randomFreqs(9, 30, 87);
 			break;
+		case "a": world.sw.additionalChannel = nextAdditional(world.sw.additionalChannel, 8); break;
+		case "l": world.backpack.additionalChannel = nextAdditional(world.backpack.additionalChannel, 9); break;
 		case "p": console.log(JSON.stringify(buildState(), null, 2)); return;
 		case "h": printHelp(); return;
 		case "q": case "\u0003": process.exit(0);

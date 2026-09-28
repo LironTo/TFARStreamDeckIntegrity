@@ -44,14 +44,33 @@
 			<sdpi-textfield setting="label" placeholder="optional, e.g. PLT"></sdpi-textfield>
 		</sdpi-item>
 
+		<!-- Unchecked: per-radio-kind default colors (DEFAULT_COLORS in src/render.ts). -->
+		<sdpi-item label="Colors">
+			<sdpi-checkbox id="custom-colors" setting="customColors" label="Custom colors"></sdpi-checkbox>
+		</sdpi-item>
+
+		<sdpi-item id="active-item" label="Active color" hidden>
+			<sdpi-color setting="activeColor"></sdpi-color>
+		</sdpi-item>
+
+		<sdpi-item id="additional-item" label="Additional color" hidden>
+			<sdpi-color setting="additionalColor"></sdpi-color>
+		</sdpi-item>
+
 		<script>
 			const radio = document.getElementById("radio");
+			const customColors = document.getElementById("custom-colors");
 			const update = () => {
 				const isIntercom = radio.value === "intercom";
+				const custom = customColors.value === true || customColors.value === "true";
 				document.getElementById("channel-item").hidden = isIntercom;
 				document.getElementById("intercom-item").hidden = !isIntercom;
+				document.getElementById("active-item").hidden = !custom;
+				// The intercom has no additional channel.
+				document.getElementById("additional-item").hidden = !custom || isIntercom;
 			};
 			radio.addEventListener("valuechange", update);
+			customColors.addEventListener("valuechange", update);
 			update();
 		</script>
 	</body>
