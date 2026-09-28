@@ -45,11 +45,11 @@ test("channel stored as string by the property inspector", () => {
 });
 
 test("LR channel 9 exists", () => {
-	assert.deepEqual(renderKey({ radio: "lr", channel: 9 }, true, state()), { title: "AC CH9\n49", highlight: "none" });
+	assert.deepEqual(renderKey({ radio: "lr", channel: 9 }, true, state()), { title: "ACT CH9\n49", highlight: "none" });
 });
 
-test("kind tags: active LR is AC, backpack LR is LR", () => {
-	assert.equal(renderKey({ radio: "lr", channel: 2 }, true, state()).title, "AC CH2\n42");
+test("kind tags: active LR is ACT, backpack LR is LR", () => {
+	assert.equal(renderKey({ radio: "lr", channel: 2 }, true, state()).title, "ACT CH2\n42");
 	assert.equal(renderKey({ radio: "lrBackpack", channel: 2 }, true, state()).title, "LR CH2\n42");
 	assert.equal(renderKey({ radio: "lrBackpack", channel: 2 }, true, state({ lrBackpack: absent })).title, "LR 2\nNO RADIO");
 });
