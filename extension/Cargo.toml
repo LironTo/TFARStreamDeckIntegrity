@@ -1,0 +1,20 @@
+[package]
+name = "tfar_sd"
+version = "0.1.0"
+edition = "2021"
+description = "Arma 3 extension bridging TFAR state to a local WebSocket (Stream Deck plugin)"
+publish = false
+
+[lib]
+name = "tfar_sd"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+arma-rs = "1.13"
+tungstenite = "0.30"
+serde_json = "1"
+log = "0.4"
+
+[profile.release]
+panic = "unwind"
+lto = true

@@ -1,0 +1,18 @@
+# Third-party (read-only reference, unpacked Workshop files)
+reference/
+@Task Force Arrowhead Radio (BETA!!!)/
+
+# Build outputs
+node_modules/
+bin/
+target/
+.hemttout/
+*.dll
+*.streamDeckPlugin
+
+# Local dev mod output
+build/
+
+# Stream Deck plugin runtime logs (written inside the linked .sdPlugin folder)
+logs/
+*.log

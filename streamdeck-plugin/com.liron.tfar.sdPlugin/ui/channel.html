@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>TFAR Radio Channel</title>
+		<meta charset="utf-8" />
+		<script src="./sdpi-components.js"></script>
+	</head>
+
+	<body>
+		<sdpi-item label="Radio">
+			<sdpi-select id="radio" setting="radio" default="sw">
+				<option value="sw">Short range (handheld)</option>
+				<option value="lr">Long range — active (auto)</option>
+				<option value="lrBackpack">Long range — backpack</option>
+				<option value="lrVehicle">Long range — vehicle</option>
+				<option value="intercom">Vehicle intercom</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<sdpi-item id="channel-item" label="Channel">
+			<sdpi-select id="channel" setting="channel" default="1">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9" id="channel-9">9 (LR only)</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<!-- Intercom uses the same "channel" setting: 0 = Disabled, 1 = Cargo, 2 = Crew. -->
+		<sdpi-item id="intercom-item" label="Intercom" hidden>
+			<sdpi-select id="intercom" setting="channel" default="2">
+				<option value="2">Crew</option>
+				<option value="1">Cargo</option>
+				<option value="0">Disabled</option>
+			</sdpi-select>
+		</sdpi-item>
+
+		<sdpi-item label="Label">
+			<sdpi-textfield setting="label" placeholder="optional, e.g. PLT"></sdpi-textfield>
+		</sdpi-item>
+
+		<script>
+			const radio = document.getElementById("radio");
+			const update = () => {
+				const isIntercom = radio.value === "intercom";
+				document.getElementById("channel-item").hidden = isIntercom;
+				document.getElementById("intercom-item").hidden = !isIntercom;
+			};
+			radio.addEventListener("valuechange", update);
+			update();
+		</script>
+	</body>
+</html>

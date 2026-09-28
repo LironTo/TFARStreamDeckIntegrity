@@ -1,0 +1,12 @@
+name = "TFAR Stream Deck"
+author = "Liron"
+prefix = "tfar_sd"
+mainprefix = "z"
+
+[version]
+path = "addons/main/script_version.hpp"
+git_hash = 0
+
+[files]
+# tfar_sd_x64.dll is copied here by extension/build.ps1 before building (gitignored).
+include = ["mod.cpp", "tfar_sd_x64.dll"]

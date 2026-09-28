@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+	"Name": "TFAR Radio",
+	"Version": "0.1.0.0",
+	"Author": "Liron",
+	"Actions": [
+		{
+			"Name": "Radio Channel",
+			"UUID": "com.liron.tfar.channel",
+			"Icon": "imgs/actions/channel/icon",
+			"Tooltip": "Shows a TFAR radio channel's frequency and switches to it on press.",
+			"PropertyInspectorPath": "ui/channel.html",
+			"Controllers": ["Keypad"],
+			"UserTitleEnabled": false,
+			"SupportedInMultiActions": false,
+			"DisableAutomaticStates": true,
+			"States": [
+				{ "Image": "imgs/actions/channel/key-off", "TitleAlignment": "middle", "FontSize": 13 },
+				{ "Image": "imgs/actions/channel/key-on", "TitleAlignment": "middle", "FontSize": 13 }
+			]
+		}
+	],
+	"Category": "TFAR Radio",
+	"CategoryIcon": "imgs/plugin/category-icon",
+	"CodePath": "bin/plugin.js",
+	"Description": "Arma 3 Task Force Arrowhead Radio: see channel frequencies and switch channels from Stream Deck.",
+	"Icon": "imgs/plugin/marketplace",
+	"SDKVersion": 3,
+	"Software": { "MinimumVersion": "7.1" },
+	"OS": [{ "Platform": "windows", "MinimumVersion": "10" }],
+	"Nodejs": { "Version": "24", "Debug": "enabled" },
+	"UUID": "com.liron.tfar"
+}
