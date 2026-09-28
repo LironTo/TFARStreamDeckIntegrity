@@ -30,8 +30,8 @@ const INTERCOM_NAMES = ["OFF", "CARGO", "CREW"];
 
 const KIND_TAGS: Record<RadioKind, string> = {
 	sw: "SR",
-	lr: "LR",
-	lrBackpack: "BP",
+	lr: "AC", // active LR (backpack or vehicle, whichever TFAR uses)
+	lrBackpack: "LR",
 	lrVehicle: "VEH",
 	intercom: "IC",
 };
