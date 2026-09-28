@@ -105,10 +105,13 @@ Field rules:
 
 ## Plugin display rules (reference)
 
-| Situation | Key title | Key state |
+| Situation | Key title | Key background |
 |---|---|---|
-| Not connected | `OFFLINE` | 0 |
-| Connected, `inGame: false` | `—` | 0 |
-| Kind not present | `NO RADIO` (intercom: `NO IC`) | 0 |
-| Radio present | `CH<n>` + newline + frequency (or custom label + frequency) | 1 if `channel == n`, else 0 |
-| Intercom present | `IC` + newline + `OFF` / `CARGO` / `CREW` | 1 if active, else 0 |
+| Not connected | `OFFLINE` | idle (dark gray) |
+| Connected, `inGame: false` | `—` | idle |
+| Kind not present | `<TAG> <n>` + `NO RADIO` (intercom: `NO IC`) | idle |
+| Radio present | `<TAG> CH<n>` (or custom label) + newline + frequency | active color if `channel == n`; additional color if `additionalChannel == n`; both → active fill with additional-colored frame; else idle |
+| Intercom present | `IC` + newline + `OFF` / `CARGO` / `CREW` | active color if selected, else idle |
+
+Default colors: short range green / orange, long range (all LR kinds) blue / purple, intercom
+teal. Per-key override with the "Custom colors" setting.

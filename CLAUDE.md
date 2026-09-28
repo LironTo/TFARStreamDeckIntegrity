@@ -261,8 +261,9 @@ in `docs/tfar-api-notes.md` before writing addon code. Do not guess:**
 - Use the extension callback mechanism (`ExtensionCallback` mission event handler) to push
   commands into SQF. No SQF polling loops for commands.
 - SQF runs on the client only (`hasInterface` guard). Do nothing on dedicated servers / HCs.
-- Stream Deck `setTitle` is plain text; use `\n` for two lines. Use a 2-state action in the
-  manifest (`setState`) to highlight the active channel.
+- Stream Deck `setTitle` is plain text; use `\n` for two lines. Keys are single-state; the
+  highlight is a dynamic SVG via `setImage` (active / additional / both), colored per radio kind
+  (`DEFAULT_COLORS` in `streamdeck-plugin/src/render.ts`) or per key with "Custom colors".
 - Plugin must handle: extension not running, game closed mid-session, reconnect loop with backoff
   (1s → 2s → 5s, max 5s), and show `—` / `NO RADIO` / `OFFLINE` on keys accordingly.
 
@@ -307,7 +308,7 @@ pressing a key changes the active channel in the mock.
 - [x] WS server on background thread; forwards `state` to all clients; forwards commands via callback
 - [x] Loads/unloads cleanly; no panics across FFI boundary
 **Done when:** plugin connects to the DLL loaded in Arma (BattlEye off) and receives a hand-sent state.
-✅ Phase 4 confirmed in-game by user 2026-09-28 (one reader + one writer thread per client; diagnostics in `%LOCALAPPDATA%\Arma 3	far_sd.log`).
+✅ Phase 4 confirmed in-game by user 2026-09-28 (one reader + one writer thread per client; diagnostics in `%LOCALAPPDATA%\Arma 3\tfar_sd.log`).
 
 ### Phase 5 — SQF addon
 - [x] CBA postInit (client only), start extension, register TFAR handlers
